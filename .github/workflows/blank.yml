@@ -1,0 +1,35 @@
+name: Deploy FastAPI
+
+on:
+  push:
+    branches:
+      - Backend-githubaction
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Deploy to Server
+      run: |
+        echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC005yNQAxBqZNOV7A8BaFJNdeUBggBoNxr5nlCZ4AQNpOESEHctVPWPc8P78iyn6rKE+pcJ+BLKSD8RVNrfC4QMttGz/ltMbfgDz0TkLnhsQ/O11xoDaKzuooUEaUuEYfp9//LU6oDNv8nvgvAll3LNGvHHjWNOogKO2QlWXXFajdbqr4tYak40mCDzuWv75zt2gtFOeP7LwB4cbVPyZoC8SAC4j/NxbEfQ3FuewBkSgzkZ11II4hJRE/6MnRSnzMBsZagmGCmqGe4kRFZ3jPNCX3YzaFQDguO1BmrSZijSLIgRmlpOCdQcYDAwPg/dwbZ621JKTH4cEa2IDT+iQ3igyxSdr4O89zQKTCt3fHCkFoCktRShDOrLhc+KSP+kTpTGg5D2jCnaOKkUN4tJKy8SZo9Lxt1JBmisTREa/zYqZJIduTVoHGbgBZO6cFmI/le5ky/A4WVtaddX5eJl0ZYsjE5UrP5U55RRK6F8KFUjvXnagZ5wMWEq5RJaWjQBbD2G5pgnFfu2N2CD9WJHMHu5Iuw98dKFbQRwrU97Mn5c/UD1jZdKGsjifEOmmIy8XejPWHrsu87Rh8Boa0eTsfzLRlFZNLYfIdmbZoQn4hxXjH7saZrRGxkIHd2xtqCQt3k0ytMPVa4+gFDFfFFj9sCvFE7Mgq1042dHVoxa26rXQ== sessi.hounnou@epitech.eu" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -t rsa 203.161.63.214 >> ~/.ssh/known_hosts
+        scp -r ./* user@203.161.63.214:/api
+
+    - name: Restart FastAPI
+      run: |
+        ssh user@203.161.63.214 "cd /api && uvicorn main:app --host 0.0.0.0 --port 8000"
