@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import DashboardView from '@/views/DashboardView.vue'
+import PatientDashboardView from '@/views/PatientDashboardView.vue'
+import DoctorDashboardView from '@/views/DoctorDashboardView.vue'
 import layout from '../components/layaouts/LayaoutForAllUser.vue'
 
 const router = createRouter({
@@ -17,11 +18,20 @@ const router = createRouter({
       },
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: DashboardView,
+      path: '/patients-dashboard',
+      name: 'patients-dashboard',
+      component: PatientDashboardView,
       meta: { 
-        title: 'Dashboard',
+        title: 'Patients-Dashboard',
+        includeLayout: false, 
+      }
+    },
+    {
+      path: '/doctors-dashboard',
+      name: 'doctors-dashboard',
+      component: DoctorDashboardView,
+      meta: { 
+        title: 'Doctors-Dashboard',
         includeLayout: false, 
       }
     }

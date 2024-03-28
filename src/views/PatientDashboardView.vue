@@ -1,10 +1,12 @@
 <script>
 import RadarChartJs from '@/components/RadarChartJs.vue'
 import HeightWeightMesure from '@/components/HeightWeightMesure.vue'
+import DashboardPaginationBloc from '@/components/DashboardPaginationBloc.vue'
 export default {
     components: {
         RadarChartJs,
         HeightWeightMesure,
+        DashboardPaginationBloc,
     },
     data() {
         return {
@@ -115,7 +117,7 @@ export default {
                                 </div>
                             </td>
                             <td class="p-0">
-                                <div class="flex flex-row justify-center px-5 py-2 mb-5" id="actinField">
+                                <div class="flex flex-row justify-center px-5 py-2 mb-5" id="actionField">
                                     <span class="block rounded-full h-16 my-auto"></span>
                                     <a class="min-w-40 rounded-3xl my-auto py-2" href="#">Voir</a>
                                 </div>
@@ -276,37 +278,7 @@ export default {
                     </tbody>
                 </table>
             </div>
-            <div class="flex flex-row mx-5" id="paginationBloc">
-                <nav class="min-w-[100px] px-3 py-2 ml-auto rounded-3xl">
-                    <ul class="list-none flex flex-row flex-nowrap gap-x-4 text-lg">
-                        <li>
-                            <a class="flex flex-row justify-center w-10 h-10 rounded-full text-center" href="#">
-                                <span class="block my-auto">&lt;</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a class="flex flex-row justify-center w-10 h-10 rounded-full text-center is-active" href="#">
-                                <span class="block my-auto">1</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a class="flex flex-row justify-center w-10 h-10 rounded-full text-center" href="#">
-                                <span class="block my-auto">2</span>
-                            </a>
-                        </li>
-                        <li class="">
-                        <a class="flex flex-row justify-center w-10 h-10 rounded-full text-center" href="#">
-                                <span class="block my-auto">3</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a class="flex flex-row justify-center w-10 h-10 rounded-full text-center" href="#">
-                                <span class="block my-auto">&gt;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            <dashboard-pagination-bloc />
         </section>
     </main>
 </template>

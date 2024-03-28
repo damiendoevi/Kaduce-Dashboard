@@ -11,12 +11,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.6.7",
     "chart.js": "^4.4.2",
     "crypto-js": "^4.2.0",
     "js-cookie": "^3.0.5",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
+    "v-calendar": "^3.1.2",
     "vue": "^3.4.15",
     "vue-chartjs": "^5.3.0",
     "vue-router": "^4.2.5",
